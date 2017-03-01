@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class nwcr extends AppCompatActivity {
     int row,col,or[][]=new int[100][100];
@@ -85,27 +86,55 @@ public class nwcr extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(count==0) {
-                    for (int i = 1; i <= row + 1; i++) {
-                        final TableRow nr = (TableRow) quest.getChildAt(i);
-                        //final TableRow nr_new= new TableRow(nwcr.this);
+                try {
+                    if (count == 0) {
+                        for (int i = 1; i <= row + 1; i++) {
+                            final TableRow nr = (TableRow) quest.getChildAt(i);
+                            //final TableRow nr_new= new TableRow(nwcr.this);
 
-                        if(i%2==0)
-                            nr.setBackgroundColor(Color.GRAY);
-                        else
-                            nr.setBackgroundColor(Color.WHITE);
+                            if (i % 2 == 0)
+                                nr.setBackgroundColor(Color.GRAY);
+                            else
+                                nr.setBackgroundColor(Color.WHITE);
 
 
-                        for (int j = 1; j <= col + 1; j++) {
-                            final EditText txt = (EditText) nr.getChildAt(j);
-                            int temp = Integer.parseInt(txt.getText().toString());
-                            or[i][j] = temp;
-                            //final TextView txtv=new TextView(nwcr.this);
-                            txt.setEnabled(false);
-                            txt.setFocusable(false);
+                            for (int j = 1; j <= col + 1; j++) {
+                                final EditText txt = (EditText) nr.getChildAt(j);
+                                int temp = Integer.parseInt(txt.getText().toString());
+                                or[i][j] = temp;
+                                //final TextView txtv=new TextView(nwcr.this);
+                                txt.setEnabled(false);
+                                txt.setFocusable(false);
+                            }
+
                         }
+                        count++;
+                    } else {
+                        for (int i = 1; i <= row + 1; i++) {
+                            final TableRow nr = (TableRow) quest.getChildAt(i);
 
+                            for (int j = 1; j <= col + 1; j++) {
+                                final EditText txt = (EditText) nr.getChildAt(j);
+                                if (or[i][col + 1] > 0 && or[row + 1][j] > 0) {
+                                    if (or[i][col + 1] > or[row + 1][j]) {
+                                        or[i][col + 1] = 0;
+                                        or[row + 1][j] -= or[i][col + 1];
+                                        or[i][j] -= or[i][col + 1];
+                                        String val = Integer.toString(or[i][j]);
+                                        txt.append(val, txt.length() + 1, val.length() + 1);
+                                    } else {
+                                        or[row + 1][j] = 0;
+                                        or[i][col + 1] -= or[row + 1][j];
+                                        or[i][j] -= or[row + 1][j];
+                                        String val = Integer.toString(or[i][j]);
+                                        txt.append(val, txt.length() + 1, val.length() + 1);
+                                    }
+                                }
+                            }
+                        }
                     }
+                } catch (Exception ee) {
+                    Toast.makeText(nwcr.this, "Please fill the table properly", Toast.LENGTH_SHORT).show();
                 }
             }
         });

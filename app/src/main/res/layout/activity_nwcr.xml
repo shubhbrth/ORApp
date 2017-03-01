@@ -9,29 +9,43 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="rs.orapp.nwcr">
-    <HorizontalScrollView
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ScrollView
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/horizontalscroll">
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/TableLayout"
             ></TableLayout>
-        </ScrollView>
+            </HorizontalScrollView>
 
+            <Button
+                android:id="@+id/next"
+                android:text="NEXT STEP"
+                android:elevation="3dp"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/horizontalscroll"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp" />
 
-    </HorizontalScrollView>
+        </RelativeLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/next"
-        android:text="NEXT STEP"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="37dp" />
+    </ScrollView>
+
 
 </RelativeLayout>

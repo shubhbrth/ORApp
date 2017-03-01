@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class rowcolselect extends AppCompatActivity {
     Button Submit;
@@ -23,13 +24,18 @@ public class rowcolselect extends AppCompatActivity {
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nrow=Integer.parseInt(row.getText().toString());
-                ncol=Integer.parseInt(col.getText().toString());
-                Intent i=new Intent(rowcolselect.this, nwcr.class);
-                data.putInt("d1",nrow);
-                data.putInt("d2",ncol);
-                i.putExtras(data);
-                startActivity(i);
+                try {
+                    nrow = Integer.parseInt(row.getText().toString());
+                    ncol = Integer.parseInt(col.getText().toString());
+                    Intent i = new Intent(rowcolselect.this, nwcr.class);
+                    data.putInt("d1", nrow);
+                    data.putInt("d2", ncol);
+                    i.putExtras(data);
+                    startActivity(i);
+                } catch (Exception e) {
+                    Toast.makeText(rowcolselect.this, "Enter Valid Values", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
     }
