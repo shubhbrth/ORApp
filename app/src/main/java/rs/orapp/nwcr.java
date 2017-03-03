@@ -111,6 +111,7 @@ public class nwcr extends AppCompatActivity {
                         }
                         count++;
                     } else {
+                        // NWCR working.
                         for (int i = 1; i < row + 1; i++) {
                             final TableRow nr = (TableRow) quest.getChildAt(i);
 
