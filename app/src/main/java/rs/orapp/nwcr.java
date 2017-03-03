@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class nwcr extends AppCompatActivity {
+    String sup, dem;
     int row,col,or[][]=new int[100][100];
     TableLayout quest;
     int column_name=65;
@@ -110,24 +111,44 @@ public class nwcr extends AppCompatActivity {
                         }
                         count++;
                     } else {
-                        for (int i = 1; i <= row + 1; i++) {
+                        for (int i = 1; i < row + 1; i++) {
                             final TableRow nr = (TableRow) quest.getChildAt(i);
 
-                            for (int j = 1; j <= col + 1; j++) {
+                            for (int j = 1; j < col + 1; j++) {
                                 final EditText txt = (EditText) nr.getChildAt(j);
                                 if (or[i][col + 1] > 0 && or[row + 1][j] > 0) {
-                                    if (or[i][col + 1] > or[row + 1][j]) {
-                                        or[i][col + 1] = 0;
+                                    //final EditText txt = (EditText) nr.getChildAt(j);
+                                    //final EditText txt = (EditText) nr.getChildAt(j);
+                                    final TableRow nrlast = (TableRow) quest.getChildAt(row + 1);
+                                    final EditText txtdemand = (EditText) nrlast.getChildAt(j);
+                                    final EditText txtsupply = (EditText) nr.getChildAt(col + 1);
+                                    if (or[i][col + 1] < or[row + 1][j]) {
+
                                         or[row + 1][j] -= or[i][col + 1];
-                                        or[i][j] -= or[i][col + 1];
-                                        String val = Integer.toString(or[i][j]);
-                                        txt.append(val, txt.length() + 1, val.length() + 1);
+                                        String val = Integer.toString(or[i][col + 1]);
+                                        or[i][col + j] = 0;
+                                        dem = Integer.toString(or[row + 1][j]);
+                                        sup = Integer.toString(or[i][col + 1]);
+                                        //txt.append(val, txt.length() + 1, val.length() + 1);
+                                        txt.setInputType(InputType.TYPE_CLASS_TEXT);
+                                        txtdemand.setInputType(InputType.TYPE_CLASS_TEXT);
+                                        txtsupply.setInputType(InputType.TYPE_CLASS_TEXT);
+                                        txt.append(" (" + val + ")");
+                                        txtdemand.append(" /" + dem);
+                                        txtsupply.append(" /" + sup);
                                     } else {
-                                        or[row + 1][j] = 0;
                                         or[i][col + 1] -= or[row + 1][j];
-                                        or[i][j] -= or[row + 1][j];
-                                        String val = Integer.toString(or[i][j]);
-                                        txt.append(val, txt.length() + 1, val.length() + 1);
+                                        String val = Integer.toString(or[row + 1][j]);
+                                        or[row + 1][j] = 0;
+                                        dem = Integer.toString(or[row + 1][j]);
+                                        sup = Integer.toString(or[i][col + 1]);
+                                        //txt.append(val, txt.length() + 1, val.length() + 1);
+                                        txt.setInputType(InputType.TYPE_CLASS_TEXT);
+                                        txtdemand.setInputType(InputType.TYPE_CLASS_TEXT);
+                                        txtsupply.setInputType(InputType.TYPE_CLASS_TEXT);
+                                        txt.append("(" + val + ")");
+                                        txtdemand.append(" /" + dem);
+                                        txtsupply.append(" /" + sup);
                                     }
                                 }
                             }
