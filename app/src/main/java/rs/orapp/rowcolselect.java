@@ -27,7 +27,8 @@ public class rowcolselect extends AppCompatActivity {
                 try {
                     nrow = Integer.parseInt(row.getText().toString());
                     ncol = Integer.parseInt(col.getText().toString());
-                    Intent i = new Intent(rowcolselect.this, nwcr.class);
+                    // Intent i = new Intent(rowcolselect.this, nwcr.class);
+                    Intent i = new Intent(rowcolselect.this, lcm.class);
                     data.putInt("d1", nrow);
                     data.putInt("d2", ncol);
                     i.putExtras(data);
