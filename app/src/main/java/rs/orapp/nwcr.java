@@ -117,6 +117,7 @@ public class nwcr extends AppCompatActivity {
 
                             for (int j = 1; j < col + 1; j++) {
                                 final EditText txt = (EditText) nr.getChildAt(j);
+
                                 if (or[i][col + 1] > 0 && or[row + 1][j] > 0) {
                                     //final EditText txt = (EditText) nr.getChildAt(j);
                                     //final EditText txt = (EditText) nr.getChildAt(j);

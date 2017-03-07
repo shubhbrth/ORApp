@@ -157,24 +157,26 @@ public class lcm extends AppCompatActivity {
 
                         lcm temp;
                         // lcm working.
-                        for (int k = 0, i = arr_cells[k].index_i, j = arr_cells[k].index_j; k < obj_n; k++) {
-                            final TableRow nr = (TableRow) quest.getChildAt(i);
+                        for (int k = 0; k < obj_n; k++) {
+                            //int i = arr_cells[k].index_i;
+                            //int j = arr_cells[k].index_j;
+                            final TableRow nr = (TableRow) quest.getChildAt(arr_cells[k].index_i);
 
 
-                            final EditText txt = (EditText) nr.getChildAt(j);
-                            if (or[i][col + 1] > 0 && or[row + 1][j] > 0) {
-                                //final EditText txt = (EditText) nr.getChildAt(j);
-                                //final EditText txt = (EditText) nr.getChildAt(j);
+                            final EditText txt = (EditText) nr.getChildAt(arr_cells[k].index_j);
+                            if (or[arr_cells[k].index_i][col + 1] > 0 && or[row + 1][arr_cells[k].index_j] > 0) {
+                                //final EditText txt = (EditText) nr.getChildAt(arr_cells[k].index_j);
+                                //final EditText txt = (EditText) nr.getChildAt(arr_cells[k].index_j);
                                 final TableRow nrlast = (TableRow) quest.getChildAt(row + 1);
-                                final EditText txtdemand = (EditText) nrlast.getChildAt(j);
+                                final EditText txtdemand = (EditText) nrlast.getChildAt(arr_cells[k].index_j);
                                 final EditText txtsupply = (EditText) nr.getChildAt(col + 1);
-                                if (or[i][col + 1] < or[row + 1][j]) {
+                                if (or[arr_cells[k].index_i][col + 1] < or[row + 1][arr_cells[k].index_j]) {
 
-                                    or[row + 1][j] -= or[i][col + 1];
-                                    String val = Integer.toString(or[i][col + 1]);
-                                    or[i][col + j] = 0;
-                                    dem = Integer.toString(or[row + 1][j]);
-                                    sup = Integer.toString(or[i][col + 1]);
+                                    or[row + 1][arr_cells[k].index_j] -= or[arr_cells[k].index_i][col + 1];
+                                    String val = Integer.toString(or[arr_cells[k].index_i][col + 1]);
+                                    or[arr_cells[k].index_i][col + arr_cells[k].index_j] = 0;
+                                    dem = Integer.toString(or[row + 1][arr_cells[k].index_j]);
+                                    sup = Integer.toString(or[arr_cells[k].index_i][col + 1]);
                                     //txt.append(val, txt.length() + 1, val.length() + 1);
                                     txt.setInputType(InputType.TYPE_CLASS_TEXT);
                                     txtdemand.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -183,11 +185,11 @@ public class lcm extends AppCompatActivity {
                                     txtdemand.append(" /" + dem);
                                     txtsupply.append(" /" + sup);
                                 } else {
-                                    or[i][col + 1] -= or[row + 1][j];
-                                    String val = Integer.toString(or[row + 1][j]);
-                                    or[row + 1][j] = 0;
-                                    dem = Integer.toString(or[row + 1][j]);
-                                    sup = Integer.toString(or[i][col + 1]);
+                                    or[arr_cells[k].index_i][col + 1] -= or[row + 1][arr_cells[k].index_j];
+                                    String val = Integer.toString(or[row + 1][arr_cells[k].index_j]);
+                                    or[row + 1][arr_cells[k].index_j] = 0;
+                                    dem = Integer.toString(or[row + 1][arr_cells[k].index_j]);
+                                    sup = Integer.toString(or[arr_cells[k].index_i][col + 1]);
                                     //txt.append(val, txt.length() + 1, val.length() + 1);
                                     txt.setInputType(InputType.TYPE_CLASS_TEXT);
                                     txtdemand.setInputType(InputType.TYPE_CLASS_TEXT);
