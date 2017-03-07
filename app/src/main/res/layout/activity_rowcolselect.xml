@@ -14,16 +14,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/l1">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="Enter No. of Rows"
             android:textSize="20dp"/>
+
         <EditText
+            android:id="@+id/nrow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Rows"
-            android:inputType="number"
-            android:id="@+id/nrow"/>
+            android:inputType="number" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +32,7 @@
         android:layout_below="@+id/l1"
         android:layout_marginTop="20dp">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="Enter No. of Columns"
             android:textSize="20dp"/>
@@ -44,13 +45,22 @@
     </LinearLayout>
 
     <Button
-        android:text="Submit"
+        android:text="Apply LCM"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:id="@+id/lcm"
+        android:elevation="4dp"
+        android:layout_above="@+id/nwcr"
+        android:layout_alignLeft="@+id/nwcr"
+        android:layout_alignStart="@+id/nwcr" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/nwcr"
+        android:elevation="4dp"
+        android:text="Apply nwcr"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="32dp"
-        android:id="@+id/submit"
-        android:elevation="4dp" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

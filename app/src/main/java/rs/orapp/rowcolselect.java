@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class rowcolselect extends AppCompatActivity {
-    Button Submit;
+    Button lcm, nwcr;
     EditText row,col;
     int nrow,ncol;
     String d1,d2;
@@ -20,8 +20,10 @@ public class rowcolselect extends AppCompatActivity {
         setContentView(R.layout.activity_rowcolselect);
         row=(EditText)findViewById(R.id.nrow);
         col=(EditText)findViewById(R.id.ncol);
-        Submit=(Button)findViewById(R.id.submit);
-        Submit.setOnClickListener(new View.OnClickListener() {
+        lcm = (Button) findViewById(R.id.lcm);
+        nwcr = (Button) findViewById(R.id.nwcr);
+
+        lcm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
@@ -37,6 +39,23 @@ public class rowcolselect extends AppCompatActivity {
                     Toast.makeText(rowcolselect.this, "Enter Valid Values", Toast.LENGTH_LONG).show();
                 }
 
+            }
+        });
+        nwcr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    nrow = Integer.parseInt(row.getText().toString());
+                    ncol = Integer.parseInt(col.getText().toString());
+                    // Intent i = new Intent(rowcolselect.this, nwcr.class);
+                    Intent i = new Intent(rowcolselect.this, nwcr.class);
+                    data.putInt("d1", nrow);
+                    data.putInt("d2", ncol);
+                    i.putExtras(data);
+                    startActivity(i);
+                } catch (Exception e) {
+                    Toast.makeText(rowcolselect.this, "Enter Valid Values", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
