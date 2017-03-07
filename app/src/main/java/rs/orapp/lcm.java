@@ -18,7 +18,7 @@ public class lcm extends AppCompatActivity {
     lcm[] arr_cells = new lcm[10];
 
     //temp object to swap
-
+    lcm temp;
     String sup, dem;
     int row, col, or[][] = new int[100][100];
     TableLayout quest;
@@ -35,6 +35,9 @@ public class lcm extends AppCompatActivity {
         this.value = a;
         this.index_i = b;
         this.index_j = c;
+    }
+
+    public lcm() {
     }
 
     @Override
@@ -152,6 +155,7 @@ public class lcm extends AppCompatActivity {
                         }
 
 
+                        lcm temp;
                         // lcm working.
                         for (int k = 0, i = arr_cells[k].index_i, j = arr_cells[k].index_j; k < obj_n; k++) {
                             final TableRow nr = (TableRow) quest.getChildAt(i);
